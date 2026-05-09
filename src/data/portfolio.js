@@ -26,7 +26,7 @@ export const navLinks = [
 
 export const rotatingTitles = [
   "Software Engineer",
-  "AWS-Certified Cloud Builder",
+  "AWS-Certified Cloud Engineer",
   "Backend Systems Developer",
   "ML Project Builder",
 ];
