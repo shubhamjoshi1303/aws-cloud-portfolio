@@ -52,7 +52,7 @@ export default function App() {
                   Cloud / Backend Engineer
                 </p>
               </div>
-              {["MS Computer Science at Syracuse University", "AWS-certified cloud builder", "Backend and ML project focus"].map((item) => (
+              {["MS Computer Science at Syracuse University", "AWS-Certified Cloud Engineer", "Backend and ML project focus"].map((item) => (
                 <div key={item} className="quiet-card p-4">
                   <p className="text-sm font-medium leading-6 text-[#FAFAFA]">{item}</p>
                 </div>
