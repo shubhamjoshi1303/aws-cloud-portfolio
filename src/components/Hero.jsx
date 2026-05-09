@@ -83,7 +83,7 @@ export default function Hero({ onOpenChat }) {
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#F5F5F5] opacity-30" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-[#F5F5F5]" />
                 </span>
-                Healthy
+                CI/CD ACTIVE
               </span>
             </div>
             <div className="relative">
@@ -96,7 +96,7 @@ export default function Hero({ onOpenChat }) {
                   initial={{ opacity: 0, x: 14 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.25 + index * 0.07 }}
-                  className="relative mb-2 grid grid-cols-[2.25rem_1fr_auto] items-center gap-3 rounded-lg border border-[#262626] bg-[#0D0D0D] px-3 py-2.5 last:mb-0"
+                  className="relative mb-2 grid grid-cols-[2.25rem_1fr] items-center gap-3 rounded-lg border border-[#262626] bg-[#0D0D0D] px-3 py-2.5 last:mb-0"
                 >
                   <span className="z-10 grid h-9 w-9 place-items-center rounded-lg border border-[#262626] bg-[#111111] text-[#A3A3A3]">
                     <Icon />
@@ -104,9 +104,6 @@ export default function Hero({ onOpenChat }) {
                   <span>
                     <span className="block text-sm font-medium text-[#FAFAFA]">{step.title}</span>
                     <span className="mt-0.5 block text-xs text-[#737373]">{step.detail}</span>
-                  </span>
-                  <span className="hidden rounded-md border border-[#1F1F1F] bg-[#0D0D0D] px-2.5 py-1 text-xs text-[#737373] sm:block">
-                    {step.time}
                   </span>
                 </motion.div>
                 );
