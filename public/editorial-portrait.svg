@@ -1,0 +1,19 @@
+<svg width="900" height="675" viewBox="0 0 900 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="675" fill="#050505"/>
+  <rect x="44" y="44" width="812" height="587" rx="18" fill="#0D0D0D" stroke="#262626"/>
+  <g opacity="0.55">
+    <path d="M110 44V631" stroke="#1F1F1F"/>
+    <path d="M220 44V631" stroke="#1F1F1F"/>
+    <path d="M330 44V631" stroke="#1F1F1F"/>
+    <path d="M440 44V631" stroke="#1F1F1F"/>
+    <path d="M550 44V631" stroke="#1F1F1F"/>
+    <path d="M660 44V631" stroke="#1F1F1F"/>
+    <path d="M770 44V631" stroke="#1F1F1F"/>
+  </g>
+  <ellipse cx="455" cy="250" rx="105" ry="118" fill="#171717" stroke="#3A3A3A"/>
+  <path d="M286 675C294 503 353 390 452 390C552 390 611 503 620 675H286Z" fill="#111111" stroke="#3A3A3A"/>
+  <path d="M360 454C384 484 417 501 454 501C491 501 523 484 547 454" stroke="#262626" stroke-width="2"/>
+  <path d="M324 675C344 556 387 498 452 498C520 498 562 557 582 675" stroke="#1F1F1F" stroke-width="2"/>
+  <rect x="64" y="572" width="214" height="1" fill="#3A3A3A"/>
+  <rect x="64" y="592" width="132" height="1" fill="#262626"/>
+</svg>
