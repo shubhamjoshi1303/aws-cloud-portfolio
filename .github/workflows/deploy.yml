@@ -9,9 +9,6 @@ permissions:
   id-token: write
   contents: read
 
-env:
-  RAG_API_ENDPOINT: https://qj6bc35xk3.execute-api.us-east-1.amazonaws.com
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -29,12 +26,12 @@ jobs:
         run: npm ci
 
       - name: Verify RAG API build URL
-        run: echo "VITE_RAG_API_URL=${RAG_API_ENDPOINT}"
+        run: echo "VITE_RAG_API_URL=https://v7sd1lcao2.execute-api.us-east-1.amazonaws.com"
 
       - name: Build React app
-        env:
-          VITE_RAG_API_URL: ${{ env.RAG_API_ENDPOINT }}
         run: npm run build
+        env:
+          VITE_RAG_API_URL: https://v7sd1lcao2.execute-api.us-east-1.amazonaws.com
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4

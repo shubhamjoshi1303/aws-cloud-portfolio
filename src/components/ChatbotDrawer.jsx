@@ -8,7 +8,7 @@ const prompts = [
   "Explain the recommender system project",
 ];
 
-console.log(import.meta.env.VITE_RAG_API_URL);
+console.log("RAG API base URL:", import.meta.env.VITE_RAG_API_URL);
 
 export default function ChatbotDrawer({ open, onOpen, onClose }) {
   const [input, setInput] = useState("");
@@ -29,8 +29,7 @@ export default function ChatbotDrawer({ open, onOpen, onClose }) {
       return;
     }
 
-    const apiUrl = import.meta.env.VITE_RAG_API_URL;
-    const chatUrl = `${apiUrl}/chat`;
+    const chatUrl = `${import.meta.env.VITE_RAG_API_URL}/chat`;
 
     setError("");
     setInput("");
