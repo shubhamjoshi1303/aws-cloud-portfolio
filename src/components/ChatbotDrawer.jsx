@@ -8,6 +8,8 @@ const prompts = [
   "Explain the recommender system project",
 ];
 
+console.log(import.meta.env.VITE_RAG_API_URL);
+
 export default function ChatbotDrawer({ open, onOpen, onClose }) {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([
@@ -28,6 +30,7 @@ export default function ChatbotDrawer({ open, onOpen, onClose }) {
     }
 
     const apiUrl = import.meta.env.VITE_RAG_API_URL;
+    const chatUrl = `${apiUrl}/chat`;
 
     setError("");
     setInput("");
@@ -38,11 +41,9 @@ export default function ChatbotDrawer({ open, onOpen, onClose }) {
     setIsLoading(true);
 
     try {
-      if (!apiUrl) {
-        throw new Error("Missing VITE_RAG_API_URL.");
-      }
+      console.log("RAG chat request URL:", chatUrl);
 
-      const response = await fetch(`${apiUrl}/chat`, {
+      const response = await fetch(chatUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,11 +51,16 @@ export default function ChatbotDrawer({ open, onOpen, onClose }) {
         body: JSON.stringify({ message: trimmedMessage }),
       });
 
+      console.log("RAG chat HTTP status:", response.status);
+
+      const responseText = await response.text();
+      console.log("RAG chat response text:", responseText);
+
       if (!response.ok) {
         throw new Error(`Request failed with status ${response.status}.`);
       }
 
-      const data = await response.json();
+      const data = JSON.parse(responseText);
 
       if (!data || typeof data.answer !== "string") {
         throw new Error("The API returned an invalid response.");
@@ -69,6 +75,8 @@ export default function ChatbotDrawer({ open, onOpen, onClose }) {
         requestError instanceof Error
           ? requestError.message
           : "Something went wrong while contacting the API.";
+
+      console.error("RAG chat caught error:", errorMessage);
 
       setError(errorMessage);
       setMessages((currentMessages) => [
