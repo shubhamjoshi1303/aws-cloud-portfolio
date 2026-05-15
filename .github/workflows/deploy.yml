@@ -26,6 +26,8 @@ jobs:
         run: npm ci
 
       - name: Build React app
+        env:
+          VITE_RAG_API_URL: ${{ vars.VITE_RAG_API_URL || 'https://v7sd1lcao2.execute-api.us-east-1.amazonaws.com' }}
         run: npm run build
 
       - name: Configure AWS credentials
