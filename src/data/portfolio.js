@@ -33,21 +33,22 @@ export const rotatingTitles = [
 ];
 
 export const projects = [
-  {
-    title: "Cloud Resume Challenge",
+    {
+    title: "IMDb Knowledge Graph Recommender",
     description:
-      "Serverless AWS resume implementation with cloud hosting, deployment automation, and a production domain path.",
-    tech: ["AWS", "S3", "CloudFront", "GitHub Actions", "CI/CD"],
+      "Graph-based recommendation system using embeddings and large-scale data processing to connect movies, genres, actors, and similarity signals.",
+    tech: ["Neo4j", "Node2Vec", "Embeddings", "Dask", "Python","S3","CDN"],
     status: "Live",
-    topology: ["GitHub", "CI/CD", "S3", "CDN"],
-    signal: "Cloud resume deployment",
-    icon: FiCloud,
+    topology: ["Graph", "Embeddings", "API", "UI"],
+    signal: "Similarity engine",
+    icon: FiGitBranch,
     links: [
-      { label: "GitHub", href: "https://github.com/shubhamjoshi1303/cloud-resume-aws", type: "github" },
-      { label: "Demo", href: "https://resume.shubhamjoshi.xyz/", type: "demo" },
+      { label: "Design", href: "https://github.com/shubhamjoshi1303/Imdb-movie-recommender_design", type: "github" },
+      { label: "Deploy Repo", href: "https://github.com/shubhamjoshi1303/imdb_recommender_deployment", type: "github" },
+      { label: "Demo", href: "https://movie.shubhamjoshi.xyz/", type: "demo" },
     ],
   },
-  {
+    {
     title: "Ecommerce App on AWS",
     description:
       "Production-style storefront deployed with global CDN delivery, managed DNS, SSL, and a cloud-native static hosting path.",
@@ -62,18 +63,17 @@ export const projects = [
     ],
   },
   {
-    title: "IMDb Knowledge Graph Recommender",
+    title: "Cloud Resume Challenge",
     description:
-      "Graph-based recommendation system using embeddings and large-scale data processing to connect movies, genres, actors, and similarity signals.",
-    tech: ["Neo4j", "Node2Vec", "Embeddings", "Dask", "Python","S3","CDN"],
+      "Serverless AWS resume implementation with cloud hosting, deployment automation, and a production domain path.",
+    tech: ["AWS", "S3", "CloudFront", "GitHub Actions", "CI/CD"],
     status: "Live",
-    topology: ["Graph", "Embeddings", "API", "UI"],
-    signal: "Similarity engine",
-    icon: FiGitBranch,
+    topology: ["GitHub", "CI/CD", "S3", "CDN"],
+    signal: "Cloud resume deployment",
+    icon: FiCloud,
     links: [
-      { label: "Design", href: "https://github.com/shubhamjoshi1303/Imdb-movie-recommender_design", type: "github" },
-      { label: "Deploy Repo", href: "https://github.com/shubhamjoshi1303/imdb_recommender_deployment", type: "github" },
-      { label: "Demo", href: "https://movie.shubhamjoshi.xyz/", type: "demo" },
+      { label: "GitHub", href: "https://github.com/shubhamjoshi1303/cloud-resume-aws", type: "github" },
+      { label: "Demo", href: "https://resume.shubhamjoshi.xyz/", type: "demo" },
     ],
   },
   {
@@ -191,27 +191,20 @@ export const certifications = [
 ];
 
 export const experience = [
-  {
-    role: "Cloud & Backend Systems Engineer",
-    organization: "Independent Engineering Projects",
-    duration: "2025 - Present",
-    summary:
-      "Building AWS-hosted applications, serverless APIs, secure static delivery paths, and production-minded backend systems with deployment automation.",
-  },
-  {
-    role: "Machine Learning Project Builder",
-    organization: "Graph Recommender Systems",
-    duration: "2024 - Present",
-    summary:
-      "Developing recommendation workflows with Neo4j, Node2Vec embeddings, Python data processing, and frontend product surfaces.",
-  },
-  {
-    role: "Graduate Computer Science Student",
-    organization: "Syracuse University",
-    duration: "MS Computer Science",
-    summary:
-      "Deepening foundations in scalable systems, algorithms, databases, software engineering, and applied machine learning.",
-  },
+ {
+   role: "Cloud Research Intern",
+   organization: "ECS, Syracuse University",
+   duration: "Jul 2025 - Present",
+   summary:
+     "Building serverless Gen AI and RAG systems using AWS Bedrock, Lambda, API Gateway, Terraform, and CI/CD workflows for cloud-native AI application deployment.",
+ },
+ {
+   role: "Student Employee",
+   organization: "Dome Concessions, Syracuse University",
+   duration: "Sep 2024 - May 2025",
+   summary:
+     "Managed cashiering, food preparation, and team coordination while supporting high-volume operations for 30K+ JMA Dome attendees during live events.",
+ },
 ];
 
 export const education = [
