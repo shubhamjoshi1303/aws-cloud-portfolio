@@ -37,7 +37,7 @@ export const projects = [
     title: "IMDb Knowledge Graph Recommender",
     description:
       "Graph-based recommendation system using embeddings and large-scale data processing to connect movies, genres, actors, and similarity signals.",
-    tech: ["Neo4j", "Node2Vec", "Embeddings", "Dask", "Python","S3","CDN"],
+    tech: ["Neo4j", "Node2Vec", "Dask", "Python","S3","CloudFront","Nginx","EC2"],
     status: "Live",
     topology: ["Graph", "Embeddings", "API", "UI"],
     signal: "Similarity engine",
@@ -157,21 +157,7 @@ export const buildingItems = [
     description:
       "Designing a retrieval layer over project, resume, and architecture context with a serverless API path.",
     status: "Prototype",
-    progress: 58,
-  },
-  {
-    title: "IMDb recommender frontend using saved embeddings",
-    description:
-      "Building the product interface around precomputed graph embeddings and movie similarity results.",
-    status: "UI build",
-    progress: 44,
-  },
-  {
-    title: "Cloud Resume Challenge with Terraform and CI/CD",
-    description:
-      "Codifying the deployment stack with infrastructure as code, validation, and repeatable delivery.",
-    status: "Planning",
-    progress: 32,
+    progress: 78,
   },
 ];
 
