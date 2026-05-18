@@ -210,7 +210,7 @@ export const education = [
   },
   {
     institution: "University of Mumbai",
-    program: "BE in Computer Engineering",
+    program: "BE Computer Engineering",
     summary:
       "Undergraduate engineering foundation in computer systems, software development, databases, algorithms, and core computer engineering principles.",
   },

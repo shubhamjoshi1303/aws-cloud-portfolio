@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import ReactMarkdown from "react-markdown";
 import { FiMessageCircle, FiSend, FiX } from "react-icons/fi";
 
 const prompts = [
@@ -10,17 +11,69 @@ const prompts = [
 
 console.log("RAG API base URL:", import.meta.env.VITE_RAG_API_URL);
 
+const initialAssistantMessage = {
+  role: "assistant",
+  content:
+    "Hi, I can answer questions about Shubham's projects, AWS work, architecture decisions, and resume.",
+};
+
+const chatStorageKey = "shubham-portfolio-chat-history";
+const promptsStorageKey = "shubham-portfolio-chat-prompts-hidden";
+
+const getStoredMessages = () => {
+  if (typeof window === "undefined") {
+    return [initialAssistantMessage];
+  }
+
+  try {
+    const storedMessages = window.localStorage.getItem(chatStorageKey);
+    const parsedMessages = storedMessages ? JSON.parse(storedMessages) : null;
+
+    if (
+      Array.isArray(parsedMessages) &&
+      parsedMessages.every(
+        (message) =>
+          (message.role === "user" || message.role === "assistant") &&
+          typeof message.content === "string",
+      )
+    ) {
+      return parsedMessages;
+    }
+  } catch (storageError) {
+    console.error("Could not load chat history:", storageError);
+  }
+
+  return [initialAssistantMessage];
+};
+
+const getStoredPromptsHidden = () => {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  return window.localStorage.getItem(promptsStorageKey) === "true";
+};
+
 export default function ChatbotDrawer({ open, onOpen, onClose }) {
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState([
-    {
-      role: "assistant",
-      content:
-        "Hi, I can answer questions about Shubham's projects, AWS work, architecture decisions, and resume.",
-    },
-  ]);
+  const [messages, setMessages] = useState(getStoredMessages);
+  const [promptsHidden, setPromptsHidden] = useState(getStoredPromptsHidden);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const hasUserMessage = useMemo(
+    () => messages.some((message) => message.role === "user"),
+    [messages],
+  );
+  const showPrompts = !promptsHidden && !hasUserMessage;
+
+  useEffect(() => {
+    window.localStorage.setItem(chatStorageKey, JSON.stringify(messages));
+  }, [messages]);
+
+  useEffect(() => {
+    window.localStorage.setItem(promptsStorageKey, String(promptsHidden));
+  }, [promptsHidden]);
 
   const sendMessage = async (message) => {
     const trimmedMessage = message.trim();
@@ -30,9 +83,13 @@ export default function ChatbotDrawer({ open, onOpen, onClose }) {
     }
 
     const chatUrl = `${import.meta.env.VITE_RAG_API_URL}/chat`;
+    const history = messages
+      .filter((storedMessage) => storedMessage.role === "user" || storedMessage.role === "assistant")
+      .slice(-6);
 
     setError("");
     setInput("");
+    setPromptsHidden(true);
     setMessages((currentMessages) => [
       ...currentMessages,
       { role: "user", content: trimmedMessage },
@@ -42,12 +99,15 @@ export default function ChatbotDrawer({ open, onOpen, onClose }) {
     try {
       console.log("RAG chat request URL:", chatUrl);
 
-      const response = await fetch(chatUrl, {
+      const response = await fetch(`${import.meta.env.VITE_RAG_API_URL}/chat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message: trimmedMessage }),
+        body: JSON.stringify({
+          message: trimmedMessage,
+          history,
+        }),
       });
 
       console.log("RAG chat HTTP status:", response.status);
@@ -140,7 +200,21 @@ export default function ChatbotDrawer({ open, onOpen, onClose }) {
                           : "mr-8 text-[#CFCFCF]"
                       }`}
                     >
-                      {message.content}
+                      {message.role === "assistant" ? (
+                        <ReactMarkdown
+                          components={{
+                            p: ({ children }) => <p className="mb-3 last:mb-0">{children}</p>,
+                            strong: ({ children }) => <strong className="font-semibold text-[#FAFAFA]">{children}</strong>,
+                            ul: ({ children }) => <ul className="mb-3 list-disc space-y-1 pl-5 last:mb-0">{children}</ul>,
+                            ol: ({ children }) => <ol className="mb-3 list-decimal space-y-1 pl-5 last:mb-0">{children}</ol>,
+                            li: ({ children }) => <li>{children}</li>,
+                          }}
+                        >
+                          {message.content}
+                        </ReactMarkdown>
+                      ) : (
+                        message.content
+                      )}
                     </div>
                   ))}
                   {isLoading && (
@@ -149,18 +223,20 @@ export default function ChatbotDrawer({ open, onOpen, onClose }) {
                     </div>
                   )}
                 </div>
-                <div className="mt-5 grid gap-2">
-                  {prompts.map((prompt) => (
-                    <button
-                      key={prompt}
-                      className="rounded-lg border border-[#262626] bg-[#0D0D0D] px-3 py-3 text-left text-sm text-[#A3A3A3] transition hover:border-[#3A3A3A] hover:bg-[#1A1A1A] hover:text-[#FAFAFA]"
-                      disabled={isLoading}
-                      onClick={() => sendMessage(prompt)}
-                    >
-                      {prompt}
-                    </button>
-                  ))}
-                </div>
+                {showPrompts && (
+                  <div className="mt-5 grid gap-2">
+                    {prompts.map((prompt) => (
+                      <button
+                        key={prompt}
+                        className="rounded-lg border border-[#262626] bg-[#0D0D0D] px-3 py-3 text-left text-sm text-[#A3A3A3] transition hover:border-[#3A3A3A] hover:bg-[#1A1A1A] hover:text-[#FAFAFA]"
+                        disabled={isLoading}
+                        onClick={() => sendMessage(prompt)}
+                      >
+                        {prompt}
+                      </button>
+                    ))}
+                  </div>
+                )}
                 {error && <p className="mt-3 text-xs text-[#737373]">{error}</p>}
               </div>
               <form
