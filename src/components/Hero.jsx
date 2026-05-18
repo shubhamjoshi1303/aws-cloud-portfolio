@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FiArrowRight, FiDownload, FiMessageCircle } from "react-icons/fi";
-import { pipelineSteps, rotatingTitles, stats } from "../data/portfolio";
+import { pipelineSteps, resumeLinks, rotatingTitles, stats } from "../data/portfolio";
 
 export default function Hero({ onOpenChat }) {
   const [titleIndex, setTitleIndex] = useState(0);
@@ -49,7 +49,7 @@ export default function Hero({ onOpenChat }) {
             <button onClick={scrollToProjects} className="primary-button">
               View Projects <FiArrowRight />
             </button>
-            <a href="/resume.pdf" className="secondary-button">
+            <a href={resumeLinks.download} className="secondary-button" target="_blank" rel="noreferrer">
               Download Resume <FiDownload />
             </a>
             <button onClick={onOpenChat} className="secondary-button">

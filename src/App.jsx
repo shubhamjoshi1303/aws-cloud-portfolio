@@ -14,6 +14,7 @@ import {
   education,
   experience,
   projects,
+  resumeLinks,
 } from "./data/portfolio";
 
 export default function App() {
@@ -68,17 +69,20 @@ export default function App() {
         >
           <div className="grid gap-4 md:grid-cols-3">
             {certifications.map((certification, index) => (
-              <motion.div
-                key={certification}
+              <motion.a
+                key={certification.title}
+                href={certification.href}
+                target="_blank"
+                rel="noreferrer"
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.06 }}
-                className="glass-card p-6"
+                className="glass-card block p-6"
               >
                 <p className="text-xs uppercase tracking-[0.18em] text-[#737373]">AWS</p>
-                <h3 className="mt-3 text-lg font-semibold leading-7 text-[#FAFAFA]">{certification}</h3>
-              </motion.div>
+                <h3 className="mt-3 text-lg font-semibold leading-7 text-[#FAFAFA]">{certification.title}</h3>
+              </motion.a>
             ))}
           </div>
         </Section>
@@ -162,10 +166,10 @@ export default function App() {
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <a href="/resume.pdf" className="primary-button">
+              <a href={resumeLinks.download} className="primary-button" target="_blank" rel="noreferrer">
                 Download Resume <FiDownload />
               </a>
-              <a href="#projects" className="secondary-button">
+              <a href={resumeLinks.cloudResume} className="secondary-button" target="_blank" rel="noreferrer">
                 View Cloud Resume Challenge <FiExternalLink />
               </a>
             </div>

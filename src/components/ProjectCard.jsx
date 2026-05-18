@@ -44,13 +44,12 @@ export default function ProjectCard({ project, index }) {
           </span>
         ))}
       </div>
-      <div className="relative mt-5 flex gap-3">
-        <a className="small-action" href="https://github.com/" target="_blank" rel="noreferrer">
-          <FiGithub /> GitHub
-        </a>
-        <a className="small-action" href="#home">
-          <FiExternalLink /> Demo
-        </a>
+      <div className="relative mt-5 flex flex-wrap gap-3">
+        {project.links?.map((link) => (
+          <a key={`${project.title}-${link.label}`} className="small-action" href={link.href} target="_blank" rel="noreferrer">
+            {link.type === "github" ? <FiGithub /> : <FiExternalLink />} {link.label}
+          </a>
+        ))}
       </div>
     </motion.article>
   );

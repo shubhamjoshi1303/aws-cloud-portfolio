@@ -1,13 +1,14 @@
 import {
   FiAward,
   FiBox,
+  FiCamera,
   FiCloud,
   FiCode,
+  FiCpu,
   FiDatabase,
   FiGitBranch,
   FiLayers,
   FiServer,
-  FiZap,
   FiActivity,
   FiTerminal,
   FiUploadCloud,
@@ -33,6 +34,20 @@ export const rotatingTitles = [
 
 export const projects = [
   {
+    title: "Cloud Resume Challenge",
+    description:
+      "Serverless AWS resume implementation with cloud hosting, deployment automation, and a production domain path.",
+    tech: ["AWS", "S3", "CloudFront", "GitHub Actions", "CI/CD"],
+    status: "Live",
+    topology: ["GitHub", "CI/CD", "S3", "CDN"],
+    signal: "Cloud resume deployment",
+    icon: FiCloud,
+    links: [
+      { label: "GitHub", href: "https://github.com/shubhamjoshi1303/cloud-resume-aws", type: "github" },
+      { label: "Demo", href: "https://resume.shubhamjoshi.xyz/", type: "demo" },
+    ],
+  },
+  {
     title: "Ecommerce App on AWS",
     description:
       "Production-style storefront deployed with global CDN delivery, managed DNS, SSL, and a cloud-native static hosting path.",
@@ -41,6 +56,10 @@ export const projects = [
     topology: ["React", "S3", "CDN", "DNS"],
     signal: "Global edge delivery",
     icon: FiGlobe,
+    links: [
+      { label: "GitHub", href: "https://github.com/shubhamjoshi1303/ecommerce-aws", type: "github" },
+      { label: "Demo", href: "https://shop.shubhamjoshi.xyz/", type: "demo" },
+    ],
   },
   {
     title: "IMDb Knowledge Graph Recommender",
@@ -51,26 +70,11 @@ export const projects = [
     topology: ["Graph", "Embeddings", "API", "UI"],
     signal: "Similarity engine",
     icon: FiGitBranch,
-  },
-  {
-    title: "CoffeeShop Serverless Backend",
-    description:
-      "Event-ready backend architecture for orders, menus, and operational visibility using managed serverless primitives.",
-    tech: ["API Gateway", "Lambda", "DynamoDB", "CloudWatch"],
-    status: "Built",
-    topology: ["API", "Lambda", "DB", "Logs"],
-    signal: "Serverless backend",
-    icon: FiZap,
-  },
-  {
-    title: "Medicare Hub High Availability Architecture",
-    description:
-      "Resilient multi-tier reference architecture focused on availability, scaling policies, shared storage, and managed relational persistence.",
-    tech: ["ALB", "Auto Scaling", "RDS Multi-AZ", "EFS"],
-    status: "Designed",
-    topology: ["DNS", "ALB", "ASG", "RDS"],
-    signal: "Multi-AZ resilience",
-    icon: FiActivity,
+    links: [
+      { label: "Design", href: "https://github.com/shubhamjoshi1303/Imdb-movie-recommender_design", type: "github" },
+      { label: "Deploy Repo", href: "https://github.com/shubhamjoshi1303/imdb_recommender_deployment", type: "github" },
+      { label: "Demo", href: "https://movie.shubhamjoshi.xyz/", type: "demo" },
+    ],
   },
   {
     title: "AWS Portfolio Website",
@@ -81,6 +85,56 @@ export const projects = [
     topology: ["GitHub", "CI/CD", "Private S3", "OAC"],
     signal: "Automated deploys",
     icon: FiUploadCloud,
+    links: [
+      { label: "GitHub", href: "https://github.com/shubhamjoshi1303/aws-cloud-portfolio", type: "github" },
+    ],
+  },
+  {
+    title: "Electricity Price Forecasting at NP-15",
+    description:
+      "Developed a hybrid electricity price forecasting pipeline combining SARIMAX and Gradient Boosting to predict CAISO NP-15 prices using solar, wind, and temperature datasets. Achieved a 15-day forecasting MAE of 16.79 by modeling seasonal behavior and refining non-linear residual errors.",
+    tech: ["Python", "SARIMAX", "Gradient Boosting", "ML Pipelines"],
+    status: "Built",
+    topology: ["Data", "SARIMAX", "Residuals", "Forecast"],
+    signal: "15-day MAE 16.79",
+    icon: FiActivity,
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/shubhamjoshi1303/Electricity-Price-Forecasting-at-NP-15-Northern-California-",
+        type: "github",
+      },
+    ],
+  },
+  {
+    title: "Shor's Algorithm Simulation",
+    description:
+      "Simulated a dynamically sized quantum circuit in IBM Qiskit for probabilistic factorization of small integers via Shor's Algorithm, including modular exponentiation and QFT stages.",
+    tech: ["Python", "Qiskit", "Quantum Circuits", "QFT"],
+    status: "Built",
+    topology: ["Circuit", "Mod Exp", "QFT", "Factors"],
+    signal: "Quantum simulation",
+    icon: FiCpu,
+    links: [
+      { label: "GitHub", href: "https://github.com/shubhamjoshi1303/Simulating-Shors-Algorithm", type: "github" },
+    ],
+  },
+  {
+    title: "Automated Facial Recognition Attendance System",
+    description:
+      "Implemented a real-time facial recognition attendance system using OpenCV and MediaPipe, supporting 20+ registered users and automating timestamped CSV logging across 100+ records. Built a user enrollment workflow for dataset updates.",
+    tech: ["Python", "OpenCV", "MediaPipe", "CSV Automation"],
+    status: "Built",
+    topology: ["Enroll", "Detect", "Recognize", "Log"],
+    signal: "20+ users tracked",
+    icon: FiCamera,
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/shubhamjoshi1303/Automated-Facial-Recognition-Attendance-System",
+        type: "github",
+      },
+    ],
   },
 ];
 
@@ -109,9 +163,18 @@ export const buildingItems = [
 ];
 
 export const certifications = [
-  "AWS Certified Cloud Practitioner",
-  "AWS Certified Solutions Architect Associate",
-  "AWS Certified AI Practitioner",
+  {
+    title: "AWS Certified Cloud Practitioner",
+    href: "https://www.credly.com/badges/76f114b4-38b4-4286-b465-44abd82bef83",
+  },
+  {
+    title: "AWS Certified Solutions Architect Associate",
+    href: "https://www.credly.com/badges/a696309b-8afd-48c3-bcfb-fec68d9bacb4",
+  },
+  {
+    title: "AWS Certified AI Practitioner",
+    href: "https://www.credly.com/badges/fa38eb81-aacd-4a35-8100-11284d3b3932",
+  },
 ];
 
 export const experience = [
@@ -144,6 +207,12 @@ export const education = [
     program: "MS Computer Science",
     summary:
       "Graduate study focused on software engineering foundations, scalable systems, backend development, and applied machine learning.",
+  },
+  {
+    institution: "University of Mumbai",
+    program: "BE in Computer Engineering",
+    summary:
+      "Undergraduate engineering foundation in computer systems, software development, databases, algorithms, and core computer engineering principles.",
   },
 ];
 
@@ -215,7 +284,13 @@ export const stats = [
 ];
 
 export const contactLinks = [
-  { label: "GitHub", href: "https://github.com/", icon: FiBox },
-  { label: "LinkedIn", href: "https://www.linkedin.com/", icon: FiAward },
-  { label: "Email", href: "mailto:shubham@example.com", icon: FiLayers },
+  { label: "GitHub", href: "https://github.com/shubhamjoshi1303", icon: FiBox },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/shubhamjoshi2025", icon: FiAward },
+  { label: "Email", href: "mailto:shubhamjoshi2026@proton.me", icon: FiLayers },
 ];
+
+export const resumeLinks = {
+  download:
+    "https://drive.google.com/file/d/1fmJQYUSRIxbE1_InfI04zPLWMKuUDJdi/view?usp=sharing",
+  cloudResume: "https://resume.shubhamjoshi.xyz/",
+};
