@@ -44,12 +44,12 @@ export default function App() {
             <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
               <div className="quiet-card relative col-span-full aspect-[16/10] overflow-hidden lg:col-span-1">
                 <img
-                  src="/editorial-portrait.svg"
-                  alt="Monochrome editorial portrait illustration"
-                  className="h-full w-full object-cover opacity-90"
+                  src="/assets/website-photo.jpeg"
+                  alt="Shubham outdoors in the snow"
+                  className="h-full w-full object-cover"
                 />
-                <div className="absolute inset-x-0 bottom-0 h-16 bg-[#050505]" />
-                <p className="absolute bottom-3 left-4 text-xs uppercase tracking-[0.2em] text-[#737373]">
+                <div className="absolute inset-x-0 bottom-0 h-16 bg-[#050505]/80" />
+                <p className="absolute bottom-3 left-4 text-xs uppercase tracking-[0.2em] text-[#A3A3A3]">
                   Cloud / Backend Engineer
                 </p>
               </div>
@@ -80,6 +80,13 @@ export default function App() {
                 transition={{ delay: index * 0.06 }}
                 className="glass-card block p-6"
               >
+                <div className="mb-5 flex h-36 items-center justify-center rounded-lg border border-[#1F1F1F] bg-[#0D0D0D] p-4">
+                  <img
+                    src={certification.image}
+                    alt={`${certification.title} badge`}
+                    className="h-full w-full object-contain"
+                  />
+                </div>
                 <p className="text-xs uppercase tracking-[0.18em] text-[#737373]">AWS</p>
                 <h3 className="mt-3 text-lg font-semibold leading-7 text-[#FAFAFA]">{certification.title}</h3>
               </motion.a>
@@ -181,12 +188,21 @@ export default function App() {
         <Section id="education" eyebrow="Education" title="Graduate computer science foundation.">
           <div className="grid gap-4">
             {education.map((item) => (
-              <div key={item.institution} className="glass-card grid gap-4 p-7 md:grid-cols-[0.8fr_1.2fr]">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.18em] text-[#737373]">{item.institution}</p>
-                  <h3 className="mt-3 text-xl font-semibold text-[#FAFAFA]">{item.program}</h3>
+              <div key={item.institution} className="glass-card grid gap-6 p-7 md:grid-cols-[0.75fr_1.25fr]">
+                <div className="flex flex-col items-start gap-4">
+                  <div className="flex h-24 w-24 items-center justify-center rounded-lg border border-[#1F1F1F] bg-[#0D0D0D] p-3">
+                    <img
+                      src={item.image}
+                      alt={`${item.institution} logo`}
+                      className="max-h-full max-w-full object-contain"
+                    />
+                  </div>
+                  <p className="text-sm font-semibold text-[#FAFAFA]">{item.institution}</p>
                 </div>
-                <p className="text-sm leading-7 text-[#A3A3A3]">{item.summary}</p>
+                <div>
+                  <h3 className="text-xl font-semibold text-[#FAFAFA]">{item.program}</h3>
+                  <p className="mt-3 text-sm leading-7 text-[#A3A3A3]">{item.summary}</p>
+                </div>
               </div>
             ))}
           </div>

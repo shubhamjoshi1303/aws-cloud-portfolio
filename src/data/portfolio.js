@@ -163,16 +163,19 @@ export const buildingItems = [
 
 export const certifications = [
   {
+    title: "AWS Certified AI Practitioner",
+    href: "https://www.credly.com/badges/fa38eb81-aacd-4a35-8100-11284d3b3932",
+    image: "/assets/aws-ai-practitioner.png",
+  },
+  {
     title: "AWS Certified Cloud Practitioner",
     href: "https://www.credly.com/badges/76f114b4-38b4-4286-b465-44abd82bef83",
+    image: "/assets/aws-cloud-practitioner.png",
   },
   {
     title: "AWS Certified Solutions Architect Associate",
     href: "https://www.credly.com/badges/a696309b-8afd-48c3-bcfb-fec68d9bacb4",
-  },
-  {
-    title: "AWS Certified AI Practitioner",
-    href: "https://www.credly.com/badges/fa38eb81-aacd-4a35-8100-11284d3b3932",
+    image: "/assets/aws-saa.png",
   },
 ];
 
@@ -199,12 +202,14 @@ export const education = [
     program: "MS Computer Science",
     summary:
       "Graduate study focused on software engineering foundations, scalable systems, backend development, and applied machine learning.",
+    image: "/assets/syracuse-university-logo.png",
   },
   {
     institution: "University of Mumbai",
     program: "BE Computer Engineering",
     summary:
       "Undergraduate engineering foundation in computer systems, software development, databases, algorithms, and core computer engineering principles.",
+    image: "/assets/university-of-mumbai-logo.svg",
   },
 ];
 
