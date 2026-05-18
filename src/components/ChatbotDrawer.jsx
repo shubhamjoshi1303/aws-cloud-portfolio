@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { FiMessageCircle, FiSend, FiX } from "react-icons/fi";
 
@@ -60,6 +60,8 @@ export default function ChatbotDrawer({ open, onOpen, onClose }) {
   const [promptsHidden, setPromptsHidden] = useState(getStoredPromptsHidden);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const messagesContainerRef = useRef(null);
+  const messagesEndRef = useRef(null);
 
   const hasUserMessage = useMemo(
     () => messages.some((message) => message.role === "user"),
@@ -74,6 +76,17 @@ export default function ChatbotDrawer({ open, onOpen, onClose }) {
   useEffect(() => {
     window.localStorage.setItem(promptsStorageKey, String(promptsHidden));
   }, [promptsHidden]);
+
+  useEffect(() => {
+    const container = messagesContainerRef.current;
+
+    if (!container) {
+      return;
+    }
+
+    container.scrollTop = container.scrollHeight;
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+  }, [messages, isLoading]);
 
   const sendMessage = async (message) => {
     const trimmedMessage = message.trim();
@@ -189,7 +202,10 @@ export default function ChatbotDrawer({ open, onOpen, onClose }) {
                   <FiX />
                 </button>
               </div>
-              <div className="flex-1 overflow-y-auto rounded-lg border border-[#262626] bg-[#0D0D0D] p-4">
+              <div
+                ref={messagesContainerRef}
+                className="flex-1 overflow-y-auto rounded-lg border border-[#262626] bg-[#0D0D0D] p-4"
+              >
                 <div className="grid gap-3">
                   {messages.map((message, index) => (
                     <div
@@ -222,6 +238,7 @@ export default function ChatbotDrawer({ open, onOpen, onClose }) {
                       Thinking...
                     </div>
                   )}
+                  <div ref={messagesEndRef} />
                 </div>
                 {showPrompts && (
                   <div className="mt-5 grid gap-2">
