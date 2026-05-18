@@ -190,11 +190,11 @@ export default function App() {
             {education.map((item) => (
               <div key={item.institution} className="glass-card grid gap-6 p-7 md:grid-cols-[0.75fr_1.25fr]">
                 <div className="flex flex-col items-start gap-4">
-                  <div className="flex h-24 w-24 items-center justify-center rounded-lg border border-[#1F1F1F] bg-[#0D0D0D] p-1.5">
+                  <div className="flex h-24 w-40 items-center justify-center rounded-lg border border-[#1F1F1F] bg-[#0D0D0D] p-2">
                     <img
                       src={item.image}
                       alt={`${item.institution} logo`}
-                      className="max-h-[92%] max-w-[96%] object-contain"
+                      className="max-h-full w-full object-contain"
                     />
                   </div>
                   <p className="text-sm font-semibold text-[#FAFAFA]">{item.institution}</p>
