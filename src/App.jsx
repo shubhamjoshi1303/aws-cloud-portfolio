@@ -190,7 +190,7 @@ export default function App() {
             {education.map((item) => (
               <div key={item.institution} className="glass-card grid gap-6 p-7 md:grid-cols-[0.75fr_1.25fr]">
                 <div className="flex flex-col items-start gap-4">
-                  <div className="flex h-24 w-40 items-center justify-center rounded-lg border border-[#1F1F1F] bg-white p-2">
+                  <div className="flex h-24 w-40 items-center justify-center rounded-md border border-[#1F1F1F] bg-white px-3 py-1">
                     <img
                       src={item.image}
                       alt={`${item.institution} logo`}
