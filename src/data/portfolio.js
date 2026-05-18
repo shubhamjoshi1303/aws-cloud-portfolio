@@ -27,9 +27,9 @@ export const navLinks = [
 
 export const rotatingTitles = [
   "Software Engineer",
-  "AWS-Certified Cloud Engineer",
+  "AWS-Certified",
   "Backend Systems Developer",
-  "ML Project Builder",
+  "Machine Learning Engineer",
 ];
 
 export const projects = [
@@ -65,8 +65,8 @@ export const projects = [
     title: "IMDb Knowledge Graph Recommender",
     description:
       "Graph-based recommendation system using embeddings and large-scale data processing to connect movies, genres, actors, and similarity signals.",
-    tech: ["Neo4j", "Node2Vec", "Embeddings", "Dask", "Python"],
-    status: "Frontend in progress",
+    tech: ["Neo4j", "Node2Vec", "Embeddings", "Dask", "Python","S3","CDN"],
+    status: "Live",
     topology: ["Graph", "Embeddings", "API", "UI"],
     signal: "Similarity engine",
     icon: FiGitBranch,
@@ -89,6 +89,19 @@ export const projects = [
       { label: "GitHub", href: "https://github.com/shubhamjoshi1303/aws-cloud-portfolio", type: "github" },
     ],
   },
+  {
+  title: "Gen AI RAG Chatbot Assistant",
+  description:
+    "Serverless Gen AI assistant built with Amazon Bedrock, RAG pipelines, and AWS cloud infrastructure for grounded knowledge retrieval.",
+  tech: ["AWS", "Amazon Bedrock", "Lambda", "API Gateway", "Terraform"],
+  status: "Live",
+  topology: ["Frontend", "API Gateway", "Lambda", "Bedrock", "RAG"],
+  signal: "Gen AI + RAG deployment",
+  icon: FiCpu,
+  links: [
+    { label: "GitHub", href: "https://github.com/shubhamjoshi1303/portfolio-rag-assistant", type: "github" },
+  ],
+},
   {
     title: "Electricity Price Forecasting at NP-15",
     description:
