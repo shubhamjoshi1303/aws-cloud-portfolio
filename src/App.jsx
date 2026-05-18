@@ -92,23 +92,25 @@ export default function App() {
           eyebrow="Experience"
           title="Technical work across cloud, backend, and ML systems."
         >
-          <div className="grid gap-4">
+          <div className="quiet-card divide-y divide-[#1F1F1F]">
             {experience.map((item, index) => (
-              <motion.article
+              <motion.div
                 key={`${item.role}-${item.organization}`}
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.06 }}
-                className="quiet-card grid gap-4 p-6 md:grid-cols-[0.85fr_1.35fr]"
+                className="grid gap-4 p-6 md:grid-cols-[0.85fr_1.35fr]"
               >
                 <div>
-                  <p className="text-xs uppercase tracking-[0.18em] text-[#737373]">{item.duration}</p>
-                  <h3 className="mt-3 text-lg font-semibold text-[#FAFAFA]">{item.role}</h3>
-                  <p className="mt-1 text-sm text-[#737373]">{item.organization}</p>
+                  <h3 className="text-sm font-semibold text-[#FAFAFA]">{item.organization}</h3>
+                  <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[#737373]">{item.duration}</p>
                 </div>
-                <p className="text-sm leading-7 text-[#A3A3A3]">{item.summary}</p>
-              </motion.article>
+                <div>
+                  <h3 className="text-lg font-semibold text-[#FAFAFA]">{item.role}</h3>
+                  <p className="mt-2 text-sm leading-7 text-[#A3A3A3]">{item.summary}</p>
+                </div>
+              </motion.div>
             ))}
           </div>
         </Section>
