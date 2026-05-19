@@ -228,7 +228,7 @@ export default function App() {
         </Section>
       </main>
       <footer className="border-t border-[#262626] px-5 py-8 text-center text-sm text-[#737373]">
-        Built with React, Vite, Tailwind CSS, and Framer Motion.
+        @ 2026 Shubham Joshi | Built with React, Vite, Tailwind CSS, and Framer Motion.
       </footer>
       <ChatbotDrawer open={chatOpen} onOpen={() => setChatOpen(true)} onClose={() => setChatOpen(false)} />
     </div>
