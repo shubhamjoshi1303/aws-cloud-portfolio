@@ -68,7 +68,7 @@ export default function App() {
         <Section
           id="certifications"
           eyebrow="Certifications"
-          title="AWS certifications backing the cloud focus."
+          title="AWS certifications earned alongside real-world cloud projects."
         >
           <div className="grid gap-4 md:grid-cols-3">
             {certifications.map((certification, index) => (
