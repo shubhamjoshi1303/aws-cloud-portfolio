@@ -245,7 +245,7 @@ export const skillGroups = [
 export const pipelineSteps = [
   {
     title: "GitHub Commit",
-    detail: "main branch update",
+    detail: "main branch push",
     time: "09:42 AM",
     icon: FiGitBranch,
   },
@@ -257,19 +257,19 @@ export const pipelineSteps = [
   },
   {
     title: "Private S3 Hosting",
-    detail: "origin locked behind OAC",
+    detail: "private origin via OAC",
     time: "09:44 AM",
     icon: FiLock,
   },
   {
     title: "CloudFront Distribution",
-    detail: "cache invalidated",
+    detail: "automated cache invalidation",
     time: "09:45 AM",
     icon: FiUploadCloud,
   },
   {
     title: "Global Production Delivery",
-    detail: "healthy at the edge",
+    detail: "low-latency edge delivery",
     time: "09:46 AM",
     icon: FiGlobe,
   },
@@ -277,7 +277,7 @@ export const pipelineSteps = [
 
 export const stats = [
   { value: "3", label: "AWS certifications" },
-  { value: "5+", label: "cloud projects" },
+  { value: "5+", label: "Production Projects" },
   { value: "MS", label: "Computer Science" },
 ];
 

@@ -23,10 +23,10 @@ export default function Hero({ onOpenChat }) {
         <motion.div initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#262626] bg-[#111111] px-4 py-2 text-sm text-[#A3A3A3]">
             <span className="h-1.5 w-1.5 rounded-full bg-[#F5F5F5]" />
-            Building resilient cloud and ML-backed systems
+            Building resilient cloud and ML-powered systems.
           </div>
           <h1 className="max-w-4xl text-4xl font-semibold leading-[1.05] tracking-normal text-[#FAFAFA] sm:text-5xl lg:text-[3.85rem]">
-            Shubham builds production-minded cloud software.
+            Shubham builds production-grade cloud software.
           </h1>
           <div className="mt-5 h-11 overflow-hidden text-xl font-medium text-[#CFCFCF] sm:text-2xl">
             <AnimatePresence mode="wait">
@@ -43,7 +43,7 @@ export default function Hero({ onOpenChat }) {
             </AnimatePresence>
           </div>
           <p className="mt-6 max-w-xl text-base leading-8 text-[#A3A3A3]">
-            Software engineer focused on AWS architectures, backend systems, scalable delivery patterns, and machine learning projects that turn data into useful products.
+            Software engineer focused on AWS architectures, backend systems, scalable delivery patterns, and machine learning applications that turn data into useful products.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <button onClick={scrollToProjects} className="primary-button">
@@ -76,7 +76,7 @@ export default function Hero({ onOpenChat }) {
             <div className="mb-4 flex items-center justify-between border-b border-[#1F1F1F] pb-3">
               <div>
                 <p className="text-sm font-medium text-[#FAFAFA]">Production Deployment Pipeline</p>
-                <p className="text-xs text-[#737373]">Portfolio shipped through a secure AWS delivery path</p>
+                <p className="text-xs text-[#737373]">Portfolio deployed through a secure AWS delivery architecture</p>
               </div>
               <span className="inline-flex items-center gap-2 rounded-full border border-[#262626] bg-[#111111] px-3 py-1 text-xs font-medium text-[#CFCFCF]">
                 <span className="relative flex h-2 w-2">
