@@ -289,6 +289,6 @@ export const contactLinks = [
 
 export const resumeLinks = {
   download:
-    "https://drive.google.com/file/d/1fmJQYUSRIxbE1_InfI04zPLWMKuUDJdi/view?usp=sharing",
+    "https://drive.google.com/file/d/1X6tyV5DjoZgvnNENW8QcLuO5m-9cKtUa/view",
   cloudResume: "https://resume.shubhamjoshi.xyz/",
 };
