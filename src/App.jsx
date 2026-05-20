@@ -29,16 +29,19 @@ export default function App() {
         <Section
           id="about"
           eyebrow="About"
-          title="Cloud-first engineering with a backend systems spine."
-          description="A focused software engineering portfolio for AWS infrastructure, scalable web systems, backend services, and ML-powered product experiments."
+          title="Cloud-first engineering built around scalable backend systems."
+          description="Focused on AWS infrastructure, scalable backend systems, production deployment workflows, and ML-powered applications."
         >
           <div className="grid gap-6 lg:grid-cols-[1fr_0.85fr]">
             <div className="glass-card p-6">
               <p className="text-base leading-8 text-[#A3A3A3]">
-                Shubham is an MS Computer Science student at Syracuse University building practical systems across cloud architecture, backend development, and machine learning applications. His work centers on secure AWS deployments, resilient service patterns, graph-based recommendation systems, and production-style automation.
+                I'm an MS Computer Science graduate from Syracuse University focused on building scalable cloud and backend systems. Over time, I've developed a strong interest in AWS architecture, deployment workflows, and designing applications that are built to run reliably beyond local environments.
               </p>
               <p className="mt-4 text-base leading-8 text-[#A3A3A3]">
-                He is interested in cloud systems, scalable architectures, ML-powered applications, and backend platforms that are reliable enough to run beyond the demo.
+                My work includes recommendation systems, ML-driven applications, retrieval-augmented AI systems, and cloud-native backend projects built using modern infrastructure and deployment practices.
+              </p>
+              <p className="mt-4 text-base leading-8 text-[#A3A3A3]">
+                Outside of engineering, I enjoy playing and watching soccer. I’m also learning Japanese as a hobby and was part of the Kendo Club at Syracuse University during graduate school. I enjoy gaming in my free time and am currently playing Lords of the Fallen.
               </p>
             </div>
             <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
@@ -50,10 +53,10 @@ export default function App() {
                 />
                 <div className="absolute inset-x-0 bottom-0 h-16 bg-[#050505]/80" />
                 <p className="absolute bottom-3 left-4 text-xs uppercase tracking-[0.2em] text-[#A3A3A3]">
-                  Cloud / Backend Engineer
+                  Cloud-Native Software Engineer
                 </p>
               </div>
-              {["MS Computer Science at Syracuse University", "AWS-Certified Cloud Engineer", "Backend and ML project focus"].map((item) => (
+              {["Serverless & Containerized Systems", "Production Deployment Pipelines", "Retrieval-Augmented AI Applications"].map((item) => (
                 <div key={item} className="quiet-card p-4">
                   <p className="text-sm font-medium leading-6 text-[#FAFAFA]">{item}</p>
                 </div>
