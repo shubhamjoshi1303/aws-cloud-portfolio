@@ -100,7 +100,7 @@ export default function App() {
         <Section
           id="experience"
           eyebrow="Experience"
-          title="Technical work across cloud, backend, and ML systems."
+          title="Professional experience across engineering and operations."
         >
           <div className="quiet-card divide-y divide-[#1F1F1F]">
             {experience.map((item, index) => (
@@ -125,7 +125,7 @@ export default function App() {
           </div>
         </Section>
 
-        <Section id="building" eyebrow="Currently Building" title="Active work in the pipeline.">
+        <Section id="building" eyebrow="Currently Building" title="Active systems in development.">
           <div className="grid gap-4 md:grid-cols-3">
             {buildingItems.map((item, index) => (
               <motion.div
@@ -155,8 +155,8 @@ export default function App() {
         <Section
           id="projects"
           eyebrow="Selected Work"
-          title="Recent systems shaped like real cloud products."
-          description="Each project emphasizes practical architecture, deployment thinking, and clean engineering tradeoffs."
+          title="Projects I’ve built across cloud, backend, and AI."
+          description="Focused on practical architecture, deployment workflows, backend systems, and applied AI engineering."
         >
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {projects.map((project, index) => (
@@ -165,11 +165,11 @@ export default function App() {
           </div>
         </Section>
 
-        <Section id="skills" eyebrow="Skills" title="A practical stack for cloud engineering work.">
+        <Section id="skills" eyebrow="Skills" title="Technologies and systems I build with.">
           <SkillsGrid />
         </Section>
 
-        <Section id="resume" eyebrow="Resume" title="Resume and cloud challenge links.">
+        <Section id="resume" eyebrow="Resume" title="Resume and interactive cloud resume challenge.">
           <div className="glass-card flex flex-col items-start justify-between gap-5 p-7 md:flex-row md:items-center">
             <div>
               <h3 className="text-2xl font-semibold text-[#FAFAFA]">Engineering resume</h3>
@@ -188,7 +188,7 @@ export default function App() {
           </div>
         </Section>
 
-        <Section id="education" eyebrow="Education" title="Graduate computer science foundation.">
+        <Section id="education" eyebrow="Education" title="Academic foundations in computer science and engineering.">
           <div className="grid gap-4">
             {education.map((item) => (
               <div key={item.institution} className="glass-card grid gap-6 p-7 md:grid-cols-[0.75fr_1.25fr]">
@@ -211,7 +211,7 @@ export default function App() {
           </div>
         </Section>
 
-        <Section id="contact" eyebrow="Contact" title="Build, ship, and talk systems.">
+        <Section id="contact" eyebrow="Contact" title="Get in touch.">
           <div className="grid gap-5 md:grid-cols-3">
             {contactLinks.map((link) => {
               const Icon = link.icon;
