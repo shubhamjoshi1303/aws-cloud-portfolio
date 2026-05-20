@@ -20,12 +20,21 @@ const initialAssistantMessage = {
 const chatStorageKey = "shubham-portfolio-chat-history";
 const promptsStorageKey = "shubham-portfolio-chat-prompts-hidden";
 
-const truncateSnippet = (snippet, maxLength = 220) => {
-  if (!snippet || snippet.length <= maxLength) {
-    return snippet;
+const cleanSnippet = (snippet) =>
+  snippet
+    ?.replace(/```[\w-]*\n?/g, "")
+    .replace(/```/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+const truncateSnippet = (snippet, maxLength = 120) => {
+  const cleanedSnippet = cleanSnippet(snippet);
+
+  if (!cleanedSnippet || cleanedSnippet.length <= maxLength) {
+    return cleanedSnippet;
   }
 
-  return `${snippet.slice(0, maxLength).trim()}...`;
+  return `${cleanedSnippet.slice(0, maxLength).trim()}...`;
 };
 
 const isValidSource = (source) =>
@@ -36,6 +45,86 @@ const isValidSource = (source) =>
 
 const normalizeSources = (sources) =>
   Array.isArray(sources) ? sources.filter(isValidSource) : [];
+
+const dedupeSources = (sources) => {
+  const seenTitles = new Set();
+  const seenUris = new Set();
+
+  return normalizeSources(sources).filter((source) => {
+    const titleKey = source.title?.toLowerCase();
+    const uriKey = source.uri?.toLowerCase();
+
+    if ((titleKey && seenTitles.has(titleKey)) || (uriKey && seenUris.has(uriKey))) {
+      return false;
+    }
+
+    if (titleKey) {
+      seenTitles.add(titleKey);
+    }
+
+    if (uriKey) {
+      seenUris.add(uriKey);
+    }
+
+    return true;
+  });
+};
+
+function SourceCitations({ sources }) {
+  const [showSnippets, setShowSnippets] = useState(false);
+  const uniqueSources = useMemo(() => dedupeSources(sources), [sources]);
+
+  if (uniqueSources.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="mt-4 border-t border-[#1F1F1F] pt-3">
+      <div className="mb-2 flex items-center justify-between gap-3">
+        <p className="text-xs uppercase tracking-[0.18em] text-[#737373]">
+          Sources · {uniqueSources.length} {uniqueSources.length === 1 ? "document" : "documents"}
+        </p>
+        <button
+          className="shrink-0 text-xs font-medium text-[#A3A3A3] underline decoration-[#525252] underline-offset-4 transition hover:text-[#FAFAFA]"
+          type="button"
+          onClick={() => setShowSnippets((currentValue) => !currentValue)}
+        >
+          {showSnippets ? "Hide snippets" : "View snippets"}
+        </button>
+      </div>
+      <div className="grid gap-1.5">
+        {uniqueSources.map((source, sourceIndex) => {
+          const isPublicLink = source.uri?.startsWith("http://") || source.uri?.startsWith("https://");
+          const title = source.title || source.uri || `Source ${sourceIndex + 1}`;
+          const snippet = truncateSnippet(source.snippet);
+
+          return (
+            <div key={`${title}-${sourceIndex}`} className="rounded-md border border-[#262626] bg-[#111111] px-2.5 py-2">
+              <div className="flex flex-wrap items-center gap-2">
+                {isPublicLink ? (
+                  <a
+                    href={source.uri}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-semibold text-[#FAFAFA] underline decoration-[#737373] underline-offset-4 transition hover:text-[#CFCFCF]"
+                  >
+                    {title}
+                  </a>
+                ) : (
+                  <p className="text-xs font-semibold text-[#FAFAFA]">{title}</p>
+                )}
+                {source.uri?.startsWith("s3://") && (
+                  <span className="text-[0.68rem] text-[#737373]">Private knowledge source</span>
+                )}
+              </div>
+              {showSnippets && snippet && <p className="mt-1.5 text-xs leading-5 text-[#A3A3A3]">{snippet}</p>}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
 
 const getStoredMessages = () => {
   if (typeof window === "undefined") {
@@ -265,43 +354,7 @@ export default function ChatbotDrawer({ open, onOpen, onClose }) {
                           >
                             {message.content}
                           </ReactMarkdown>
-                          {message.sources?.length > 0 && (
-                            <div className="mt-4 border-t border-[#1F1F1F] pt-3">
-                              <p className="mb-2 text-xs uppercase tracking-[0.18em] text-[#737373]">Sources</p>
-                              <div className="grid gap-2">
-                                {message.sources.map((source, sourceIndex) => {
-                                  const isPublicLink =
-                                    source.uri?.startsWith("http://") || source.uri?.startsWith("https://");
-                                  const title = source.title || source.uri || `Source ${sourceIndex + 1}`;
-                                  const snippet = truncateSnippet(source.snippet);
-
-                                  return (
-                                    <div
-                                      key={`${title}-${sourceIndex}`}
-                                      className="rounded-lg border border-[#262626] bg-[#111111] p-3"
-                                    >
-                                      {isPublicLink ? (
-                                        <a
-                                          href={source.uri}
-                                          target="_blank"
-                                          rel="noopener noreferrer"
-                                          className="text-xs font-semibold text-[#FAFAFA] underline decoration-[#737373] underline-offset-4 transition hover:text-[#CFCFCF]"
-                                        >
-                                          {title}
-                                        </a>
-                                      ) : (
-                                        <p className="text-xs font-semibold text-[#FAFAFA]">{title}</p>
-                                      )}
-                                      {source.uri?.startsWith("s3://") && (
-                                        <p className="mt-1 text-[0.68rem] text-[#737373]">Private knowledge source</p>
-                                      )}
-                                      {snippet && <p className="mt-2 text-xs leading-5 text-[#A3A3A3]">{snippet}</p>}
-                                    </div>
-                                  );
-                                })}
-                              </div>
-                            </div>
-                          )}
+                          <SourceCitations sources={message.sources} />
                         </>
                       ) : (
                         message.content
