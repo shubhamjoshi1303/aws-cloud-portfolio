@@ -20,6 +20,23 @@ const initialAssistantMessage = {
 const chatStorageKey = "shubham-portfolio-chat-history";
 const promptsStorageKey = "shubham-portfolio-chat-prompts-hidden";
 
+const truncateSnippet = (snippet, maxLength = 220) => {
+  if (!snippet || snippet.length <= maxLength) {
+    return snippet;
+  }
+
+  return `${snippet.slice(0, maxLength).trim()}...`;
+};
+
+const isValidSource = (source) =>
+  source &&
+  typeof source.title === "string" &&
+  (!source.uri || typeof source.uri === "string") &&
+  (!source.snippet || typeof source.snippet === "string");
+
+const normalizeSources = (sources) =>
+  Array.isArray(sources) ? sources.filter(isValidSource) : [];
+
 const getStoredMessages = () => {
   if (typeof window === "undefined") {
     return [initialAssistantMessage];
@@ -34,7 +51,8 @@ const getStoredMessages = () => {
       parsedMessages.every(
         (message) =>
           (message.role === "user" || message.role === "assistant") &&
-          typeof message.content === "string",
+          typeof message.content === "string" &&
+          (!message.sources || Array.isArray(message.sources)),
       )
     ) {
       return parsedMessages;
@@ -98,6 +116,10 @@ export default function ChatbotDrawer({ open, onOpen, onClose }) {
     const chatUrl = `${import.meta.env.VITE_RAG_API_URL}/chat`;
     const history = messages
       .filter((storedMessage) => storedMessage.role === "user" || storedMessage.role === "assistant")
+      .map((storedMessage) => ({
+        role: storedMessage.role,
+        content: storedMessage.content,
+      }))
       .slice(-6);
 
     setError("");
@@ -140,7 +162,11 @@ export default function ChatbotDrawer({ open, onOpen, onClose }) {
 
       setMessages((currentMessages) => [
         ...currentMessages,
-        { role: "assistant", content: data.answer },
+        {
+          role: "assistant",
+          content: data.answer,
+          sources: normalizeSources(data.sources),
+        },
       ]);
     } catch (requestError) {
       const errorMessage =
@@ -217,17 +243,66 @@ export default function ChatbotDrawer({ open, onOpen, onClose }) {
                       }`}
                     >
                       {message.role === "assistant" ? (
-                        <ReactMarkdown
-                          components={{
-                            p: ({ children }) => <p className="mb-3 last:mb-0">{children}</p>,
-                            strong: ({ children }) => <strong className="font-semibold text-[#FAFAFA]">{children}</strong>,
-                            ul: ({ children }) => <ul className="mb-3 list-disc space-y-1 pl-5 last:mb-0">{children}</ul>,
-                            ol: ({ children }) => <ol className="mb-3 list-decimal space-y-1 pl-5 last:mb-0">{children}</ol>,
-                            li: ({ children }) => <li>{children}</li>,
-                          }}
-                        >
-                          {message.content}
-                        </ReactMarkdown>
+                        <>
+                          <ReactMarkdown
+                            components={{
+                              p: ({ children }) => <p className="mb-3 last:mb-0">{children}</p>,
+                              strong: ({ children }) => <strong className="font-semibold text-[#FAFAFA]">{children}</strong>,
+                              a: ({ children, href }) => (
+                                <a
+                                  href={href || "#"}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-[#FAFAFA] underline decoration-[#A3A3A3] underline-offset-4 transition hover:text-[#CFCFCF]"
+                                >
+                                  {children}
+                                </a>
+                              ),
+                              ul: ({ children }) => <ul className="mb-3 list-disc space-y-1 pl-5 last:mb-0">{children}</ul>,
+                              ol: ({ children }) => <ol className="mb-3 list-decimal space-y-1 pl-5 last:mb-0">{children}</ol>,
+                              li: ({ children }) => <li>{children}</li>,
+                            }}
+                          >
+                            {message.content}
+                          </ReactMarkdown>
+                          {message.sources?.length > 0 && (
+                            <div className="mt-4 border-t border-[#1F1F1F] pt-3">
+                              <p className="mb-2 text-xs uppercase tracking-[0.18em] text-[#737373]">Sources</p>
+                              <div className="grid gap-2">
+                                {message.sources.map((source, sourceIndex) => {
+                                  const isPublicLink =
+                                    source.uri?.startsWith("http://") || source.uri?.startsWith("https://");
+                                  const title = source.title || source.uri || `Source ${sourceIndex + 1}`;
+                                  const snippet = truncateSnippet(source.snippet);
+
+                                  return (
+                                    <div
+                                      key={`${title}-${sourceIndex}`}
+                                      className="rounded-lg border border-[#262626] bg-[#111111] p-3"
+                                    >
+                                      {isPublicLink ? (
+                                        <a
+                                          href={source.uri}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          className="text-xs font-semibold text-[#FAFAFA] underline decoration-[#737373] underline-offset-4 transition hover:text-[#CFCFCF]"
+                                        >
+                                          {title}
+                                        </a>
+                                      ) : (
+                                        <p className="text-xs font-semibold text-[#FAFAFA]">{title}</p>
+                                      )}
+                                      {source.uri?.startsWith("s3://") && (
+                                        <p className="mt-1 text-[0.68rem] text-[#737373]">Private knowledge source</p>
+                                      )}
+                                      {snippet && <p className="mt-2 text-xs leading-5 text-[#A3A3A3]">{snippet}</p>}
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          )}
+                        </>
                       ) : (
                         message.content
                       )}
