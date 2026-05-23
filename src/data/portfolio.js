@@ -156,8 +156,8 @@ export const buildingItems = [
     title: "AI-powered portfolio chatbot using RAG",
     description:
       "Designing a retrieval layer over project, resume, and architecture context with a serverless API path.",
-    status: "Prototype",
-    progress: 78,
+    status: "Final Touches",
+    progress: 88,
   },
 ];
 
