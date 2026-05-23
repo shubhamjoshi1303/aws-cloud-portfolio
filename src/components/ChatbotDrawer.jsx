@@ -311,7 +311,7 @@ export default function ChatbotDrawer({ open, onOpen, onClose }) {
               <div className="mb-5 flex items-center justify-between">
                 <div>
                   <h2 className="text-lg font-semibold text-[#FAFAFA]">Ask Shubham's AI</h2>
-                  <p className="text-sm text-[#737373]">Portfolio assistant</p>
+                  <p className="text-sm text-[#737373]">RAG Portfolio assistant</p>
                 </div>
                 <button className="icon-button" onClick={onClose} aria-label="Close AI chatbot">
                   <FiX />
