@@ -41,7 +41,7 @@ export default function App() {
                 My work includes recommendation systems, ML-driven applications, retrieval-augmented AI systems, and cloud-native backend projects built using modern infrastructure and deployment practices.
               </p>
               <p className="mt-4 text-base leading-8 text-[#A3A3A3]">
-                Outside of engineering, I enjoy playing and watching soccer. I’m also learning Japanese as a hobby and was part of the Kendo Club at Syracuse University during graduate school. I enjoy gaming in my free time and am currently playing Lords of the Fallen.
+                Outside of engineering, I enjoy playing and watching soccer. I played competitively on my high school football (soccer) team and later participated in intramural soccer during graduate school. I’m also learning Japanese as a hobby and was part of the Kendo Club at Syracuse University. In my free time, I enjoy gaming and am currently playing Lords of the Fallen.
               </p>
             </div>
             <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
