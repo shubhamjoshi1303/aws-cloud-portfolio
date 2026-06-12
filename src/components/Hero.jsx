@@ -21,10 +21,6 @@ export default function Hero({ onOpenChat }) {
     <section id="home" className="relative isolate overflow-hidden pt-24">
       <div className="mx-auto grid min-h-[650px] max-w-7xl items-center gap-12 px-5 pb-14 sm:px-6 lg:grid-cols-[0.96fr_1.04fr] lg:px-8">
         <motion.div initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#262626] bg-[#111111] px-4 py-2 text-sm text-[#A3A3A3]">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#F5F5F5]" />
-            Building resilient cloud and ML-powered systems.
-          </div>
           <h1 className="max-w-4xl text-4xl font-semibold leading-[1.05] tracking-normal text-[#FAFAFA] sm:text-5xl lg:text-[3.85rem]">
             Shubham builds production-grade cloud software.
           </h1>
