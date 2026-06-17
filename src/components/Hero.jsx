@@ -72,27 +72,52 @@ export default function Hero({ onOpenChat }) {
             <p className="text-sm font-medium text-[#FAFAFA]">Production Deployment Pipeline</p>
             <p className="mt-1 text-xs text-[#737373]">Portfolio deployed through a secure AWS delivery architecture</p>
           </div>
-          <div className="grid gap-4">
+          <div className="grid gap-3.5">
             {pipelineSteps.map((step, index) => {
               const Icon = step.icon;
               const alignClass = index % 2 === 0 ? "justify-self-start" : "justify-self-end";
+              const arrowClass =
+                index % 2 === 0
+                  ? "right-[7.25rem] sm:right-[8.75rem]"
+                  : "left-[7.25rem] scale-x-[-1] sm:left-[8.75rem]";
 
               return (
-                <motion.div
-                  key={step.title}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.25 + index * 0.07 }}
-                  className={`relative grid w-full max-w-[28rem] grid-cols-[2.25rem_1fr] items-center gap-3 rounded-lg border border-[#262626] bg-[#0D0D0D] px-3 py-2.5 ${alignClass}`}
-                >
-                  <span className="grid h-9 w-9 place-items-center rounded-lg border border-[#262626] bg-[#111111] text-[#A3A3A3]">
-                    <Icon />
-                  </span>
-                  <span>
-                    <span className="block text-sm font-medium text-[#FAFAFA]">{step.title}</span>
-                    <span className="mt-0.5 block text-xs text-[#737373]">{step.detail}</span>
-                  </span>
-                </motion.div>
+                <div key={step.title} className={`relative grid ${index < pipelineSteps.length - 1 ? "pb-8" : ""}`}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.25 + index * 0.07 }}
+                    className={`relative grid w-full max-w-[28rem] grid-cols-[2.25rem_1fr] items-center gap-3 rounded-lg border border-[#262626] bg-[#0D0D0D] px-3 py-2.5 ${alignClass}`}
+                  >
+                    <span className="grid h-9 w-9 place-items-center rounded-lg border border-[#262626] bg-[#111111] text-[#A3A3A3]">
+                      <Icon />
+                    </span>
+                    <span>
+                      <span className="block text-sm font-medium text-[#FAFAFA]">{step.title}</span>
+                      <span className="mt-0.5 block text-xs text-[#737373]">{step.detail}</span>
+                    </span>
+                  </motion.div>
+                  {index < pipelineSteps.length - 1 ? (
+                    <motion.svg
+                      aria-hidden="true"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 0.78 }}
+                      transition={{ delay: 0.38 + index * 0.07 }}
+                      className={`pointer-events-none absolute top-[4.85rem] h-12 w-24 text-[#FAFAFA] ${arrowClass}`}
+                      viewBox="0 0 96 48"
+                      fill="none"
+                    >
+                      <path
+                        d="M12 5C42 6 67 20 76 39"
+                        stroke="currentColor"
+                        strokeWidth="1.7"
+                        strokeLinecap="round"
+                        strokeDasharray="4 6"
+                      />
+                      <path d="M65 36L77 40L78 27" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+                    </motion.svg>
+                  ) : null}
+                </div>
               );
             })}
           </div>
