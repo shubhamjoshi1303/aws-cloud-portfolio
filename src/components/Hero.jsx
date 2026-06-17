@@ -69,8 +69,8 @@ export default function Hero({ onOpenChat }) {
           className="relative mx-auto w-full max-w-[33rem]"
         >
           <div className="mb-5">
-            <p className="text-sm font-medium text-[#FAFAFA]">Production Deployment Pipeline</p>
-            <p className="mt-1 text-xs text-[#737373]">Portfolio deployed through a secure AWS delivery architecture</p>
+            <p className="text-sm font-medium text-[#FAFAFA]"> Portfolio Website Deployment Pipeline</p>
+            <p className="mt-1 text-xs text-[#737373]">How I deployed my portfolio website using AWS and CI/CD </p>
           </div>
           <div className="grid gap-2">
             {pipelineSteps.map((step, index) => {
@@ -99,7 +99,7 @@ export default function Hero({ onOpenChat }) {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 0.72 }}
                       transition={{ delay: 0.38 + index * 0.07 }}
-                      className="pointer-events-none my-1 h-8 w-5 justify-self-center text-[#A3A3A3]"
+                      className="pointer-events-none mt-1 -mb-2 h-8 w-5 justify-self-center text-[#A3A3A3]"
                       viewBox="0 0 20 32"
                       fill="none"
                     >
