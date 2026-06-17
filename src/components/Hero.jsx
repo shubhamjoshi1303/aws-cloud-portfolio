@@ -66,7 +66,7 @@ export default function Hero({ onOpenChat }) {
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.12 }}
-          className="relative mx-auto w-full max-w-[40rem]"
+          className="relative mx-auto w-full max-w-[33rem]"
         >
           <div className="mb-5">
             <p className="text-sm font-medium text-[#FAFAFA]">Production Deployment Pipeline</p>
@@ -83,7 +83,7 @@ export default function Hero({ onOpenChat }) {
                     initial={{ opacity: 0, y: 14 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.25 + index * 0.07 }}
-                    className={`grid w-full max-w-[28rem] grid-cols-[2.25rem_1fr] items-center gap-3 rounded-lg border border-[#262626] bg-[#0D0D0D] px-3 py-2.5 ${alignClass}`}
+                    className={`grid w-full max-w-[25rem] grid-cols-[2.25rem_1fr] items-center gap-3 rounded-lg border border-[#262626] bg-[#0D0D0D] px-3 py-2.5 ${alignClass}`}
                   >
                     <span className="grid h-9 w-9 place-items-center rounded-lg border border-[#262626] bg-[#111111] text-[#A3A3A3]">
                       <Icon />
