@@ -76,10 +76,6 @@ export default function Hero({ onOpenChat }) {
             {pipelineSteps.map((step, index) => {
               const Icon = step.icon;
               const alignClass = index % 2 === 0 ? "justify-self-start" : "justify-self-end";
-              const arrowClass =
-                index % 2 === 0
-                  ? "translate-x-20"
-                  : "-translate-x-20 scale-x-[-1]";
 
               return (
                 <div key={step.title} className="grid">
@@ -103,18 +99,17 @@ export default function Hero({ onOpenChat }) {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 0.72 }}
                       transition={{ delay: 0.38 + index * 0.07 }}
-                      className={`pointer-events-none my-0.5 h-9 w-24 justify-self-center text-[#FAFAFA] ${arrowClass}`}
-                      viewBox="0 0 96 36"
+                      className="pointer-events-none my-1 h-8 w-5 justify-self-center text-[#A3A3A3]"
+                      viewBox="0 0 20 32"
                       fill="none"
                     >
                       <path
-                        d="M11 4C41 4 68 15 81 30"
+                        d="M10 3V27"
                         stroke="currentColor"
                         strokeWidth="1.5"
                         strokeLinecap="round"
-                        strokeDasharray="4 6"
                       />
-                      <path d="M71 29L82 31L80 20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M4 21L10 27L16 21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </motion.svg>
                   ) : null}
                 </div>
