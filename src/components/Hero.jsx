@@ -72,22 +72,22 @@ export default function Hero({ onOpenChat }) {
             <p className="text-sm font-medium text-[#FAFAFA]">Production Deployment Pipeline</p>
             <p className="mt-1 text-xs text-[#737373]">Portfolio deployed through a secure AWS delivery architecture</p>
           </div>
-          <div className="grid gap-3.5">
+          <div className="grid gap-2">
             {pipelineSteps.map((step, index) => {
               const Icon = step.icon;
               const alignClass = index % 2 === 0 ? "justify-self-start" : "justify-self-end";
               const arrowClass =
                 index % 2 === 0
-                  ? "right-[5.75rem] sm:right-[7.25rem]"
-                  : "left-[5.75rem] scale-x-[-1] sm:left-[7.25rem]";
+                  ? "translate-x-20"
+                  : "-translate-x-20 scale-x-[-1]";
 
               return (
-                <div key={step.title} className={`relative grid overflow-visible ${index < pipelineSteps.length - 1 ? "pb-12" : ""}`}>
+                <div key={step.title} className="grid">
                   <motion.div
                     initial={{ opacity: 0, y: 14 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.25 + index * 0.07 }}
-                    className={`relative z-10 grid w-full max-w-[28rem] grid-cols-[2.25rem_1fr] items-center gap-3 rounded-lg border border-[#262626] bg-[#0D0D0D] px-3 py-2.5 ${alignClass}`}
+                    className={`grid w-full max-w-[28rem] grid-cols-[2.25rem_1fr] items-center gap-3 rounded-lg border border-[#262626] bg-[#0D0D0D] px-3 py-2.5 ${alignClass}`}
                   >
                     <span className="grid h-9 w-9 place-items-center rounded-lg border border-[#262626] bg-[#111111] text-[#A3A3A3]">
                       <Icon />
@@ -101,20 +101,20 @@ export default function Hero({ onOpenChat }) {
                     <motion.svg
                       aria-hidden="true"
                       initial={{ opacity: 0 }}
-                      animate={{ opacity: 0.78 }}
+                      animate={{ opacity: 0.72 }}
                       transition={{ delay: 0.38 + index * 0.07 }}
-                      className={`pointer-events-none absolute top-[3.95rem] z-0 h-12 w-28 text-[#FAFAFA] ${arrowClass}`}
-                      viewBox="0 0 112 48"
+                      className={`pointer-events-none my-0.5 h-9 w-24 justify-self-center text-[#FAFAFA] ${arrowClass}`}
+                      viewBox="0 0 96 36"
                       fill="none"
                     >
                       <path
-                        d="M12 6C47 6 79 20 93 40"
+                        d="M11 4C41 4 68 15 81 30"
                         stroke="currentColor"
-                        strokeWidth="1.7"
+                        strokeWidth="1.5"
                         strokeLinecap="round"
                         strokeDasharray="4 6"
                       />
-                      <path d="M81 39L94 41L92 28" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M71 29L82 31L80 20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </motion.svg>
                   ) : null}
                 </div>
