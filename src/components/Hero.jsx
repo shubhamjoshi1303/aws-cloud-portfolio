@@ -78,16 +78,16 @@ export default function Hero({ onOpenChat }) {
               const alignClass = index % 2 === 0 ? "justify-self-start" : "justify-self-end";
               const arrowClass =
                 index % 2 === 0
-                  ? "right-[7.25rem] sm:right-[8.75rem]"
-                  : "left-[7.25rem] scale-x-[-1] sm:left-[8.75rem]";
+                  ? "right-[5.75rem] sm:right-[7.25rem]"
+                  : "left-[5.75rem] scale-x-[-1] sm:left-[7.25rem]";
 
               return (
-                <div key={step.title} className={`relative grid ${index < pipelineSteps.length - 1 ? "pb-8" : ""}`}>
+                <div key={step.title} className={`relative grid overflow-visible ${index < pipelineSteps.length - 1 ? "pb-12" : ""}`}>
                   <motion.div
                     initial={{ opacity: 0, y: 14 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.25 + index * 0.07 }}
-                    className={`relative grid w-full max-w-[28rem] grid-cols-[2.25rem_1fr] items-center gap-3 rounded-lg border border-[#262626] bg-[#0D0D0D] px-3 py-2.5 ${alignClass}`}
+                    className={`relative z-10 grid w-full max-w-[28rem] grid-cols-[2.25rem_1fr] items-center gap-3 rounded-lg border border-[#262626] bg-[#0D0D0D] px-3 py-2.5 ${alignClass}`}
                   >
                     <span className="grid h-9 w-9 place-items-center rounded-lg border border-[#262626] bg-[#111111] text-[#A3A3A3]">
                       <Icon />
@@ -103,18 +103,18 @@ export default function Hero({ onOpenChat }) {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 0.78 }}
                       transition={{ delay: 0.38 + index * 0.07 }}
-                      className={`pointer-events-none absolute top-[4.85rem] h-12 w-24 text-[#FAFAFA] ${arrowClass}`}
-                      viewBox="0 0 96 48"
+                      className={`pointer-events-none absolute top-[3.95rem] z-0 h-12 w-28 text-[#FAFAFA] ${arrowClass}`}
+                      viewBox="0 0 112 48"
                       fill="none"
                     >
                       <path
-                        d="M12 5C42 6 67 20 76 39"
+                        d="M12 6C47 6 79 20 93 40"
                         stroke="currentColor"
                         strokeWidth="1.7"
                         strokeLinecap="round"
                         strokeDasharray="4 6"
                       />
-                      <path d="M65 36L77 40L78 27" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M81 39L94 41L92 28" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
                     </motion.svg>
                   ) : null}
                 </div>
